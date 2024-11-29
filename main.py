@@ -13,14 +13,19 @@ def count_characters_insensitive(text):
     characters = dict()
     for char in text:
         if char not in characters:
-            characters[char] = 1
+            characters[char] = 0
         characters[char] += 1
-    print(characters)
+    return characters
 
 
 if __name__ == "__main__":
     text = get_book_text_by_path("books/frankenstein.txt")
-    print("Number of words:")
-    print(count_words(text))
-    print("Counted characters:")
-    print(count_characters_insensitive(text))
+    number_of_words = count_words(text)
+    characters_dic = count_characters_insensitive(text)
+
+    print("--- Begin report of books/frankenstein.txt ---")
+    print(f"{number_of_words} words found in the document")
+    print("")
+    for key in characters_dic:
+        print(f"The '{key}' character was found {characters_dic[key]} times")
+    print("--- End report ---")
